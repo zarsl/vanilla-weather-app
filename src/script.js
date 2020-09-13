@@ -37,7 +37,8 @@ function searchCity(response) {
   cityElement.innerHTML = response.data.name;
 
   let temperatureElement = document.querySelector("#temperature");
-  temperatureElement.innerHTML = Math.round(response.data.main.temp);
+  fahrenheitTemperature = response.data.main.temp;
+  temperatureElement.innerHTML = Math.round(fahrenheitTemperature);
 
   let humidityElement = document.querySelector("#humidity");
   humidityElement.innerHTML = Math.round(response.data.main.humidity);
@@ -47,14 +48,40 @@ function searchCity(response) {
 
   let descriptionElement = document.querySelector("#weather-description");
   descriptionElement.innerHTML = response.data.weather[0].description;
-
   getLocalTime(response.data.timezone);
 }
+
+function convertToCelsius() {
+  let temperatureElement = document.querySelector("#temperature");
+  let celsiusLink = document.querySelector("#celsius-link");
+  let fahrenheitLink = document.querySelector("#fahrenheit-link");
+  celsiusLink.classList.add("active");
+  fahrenheitLink.classList.remove("active");
+  let celsiusTemperature = ((fahrenheitTemperature - 32) * 5) / 9;
+  temperature.innerHTML = Math.round(celsiusTemperature);
+}
+
+function convertToFahrenheit() {
+  let temperatureElement = document.querySelector("#temperature");
+  let celsiusLink = document.querySelector("#celsius-link");
+  let fahrenheitLink = document.querySelector("#fahrenheit-link");
+  celsiusLink.classList.remove("active");
+  fahrenheitLink.classList.add("active");
+  temperature.innerHTML = Math.round(fahrenheitTemperature);
+}
+
+let fahrenheitTemperature = null;
 
 let apiKey = "4fb8f394cc5f2d439df6249cf258d6a4";
 let root = "https://api.openweathermap.org/data/2.5/weather?";
 let city = "Paris";
-let units = "metric";
+let units = "imperial";
 let apiUrl = `${root}q=${city}&appid=${apiKey}&units=${units}`;
 
 axios.get(apiUrl).then(searchCity);
+
+let celsiusLink = document.querySelector("#celsius-link");
+celsiusLink.addEventListener("click", convertToCelsius);
+
+let fahrenheitLink = document.querySelector("#fahrenheit-link");
+fahrenheitLink.addEventListener("click", convertToFahrenheit);
