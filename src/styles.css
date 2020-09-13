@@ -63,3 +63,7 @@ footer {
 #weather-description {
   text-transform: capitalize;
 }
+
+#local-time {
+  font-size: 14px;
+}
