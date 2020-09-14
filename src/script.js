@@ -45,11 +45,11 @@ function displayCityOverview(response) {
 
   let windElement = document.querySelector("#wind");
   windElement.innerHTML = Math.round(response.data.wind.speed);
+  windSpeedImperial = response.data.wind.speed;
 
   let descriptionElement = document.querySelector("#weather-description");
   descriptionElement.innerHTML = response.data.weather[0].description;
   getLocalTime(response.data.timezone);
-  console.log(response);
 }
 
 function convertToCelsius() {
@@ -60,6 +60,12 @@ function convertToCelsius() {
   fahrenheitLink.classList.remove("active");
   let celsiusTemperature = ((fahrenheitTemperature - 32) * 5) / 9;
   temperature.innerHTML = Math.round(celsiusTemperature);
+
+  let windUnitsElement = document.querySelector("#wind-units");
+  windUnitsElement.innerHTML = "m/s";
+
+  let windSpeedElement = document.querySelector("#wind");
+  windSpeedElement.innerHTML = Math.round(0.44704 * windSpeedImperial);
 }
 
 function convertToFahrenheit() {
@@ -69,6 +75,12 @@ function convertToFahrenheit() {
   celsiusLink.classList.remove("active");
   fahrenheitLink.classList.add("active");
   temperature.innerHTML = Math.round(fahrenheitTemperature);
+
+  let windUnitsElement = document.querySelector("#wind-units");
+  windUnitsElement.innerHTML = "mi/hr";
+
+  let windSpeedElement = document.querySelector("#wind");
+  windSpeedElement.innerHTML = Math.round(windSpeedImperial);
 }
 
 function searchCity(city) {
@@ -100,6 +112,7 @@ function handleCurrentLocationSearch() {
 }
 
 let fahrenheitTemperature = null;
+let windSpeedImperial = null;
 
 let apiKey = "4fb8f394cc5f2d439df6249cf258d6a4";
 let root = "https://api.openweathermap.org/data/2.5/weather?";
