@@ -19,7 +19,7 @@
         <div class="weather-app">
           <form id="search">
             <div class="row">
-              <div class="col-8 w-100" id="input-field">
+              <div class="col-8" id="input-field">
                 <input
                   type="search"
                   class="form-control"
@@ -29,7 +29,7 @@
                   id="city-input"
                 />
               </div>
-              <div class="col-3 w-100" id="search-button">
+              <div class="col-3" id="search-button">
                 <input
                   type="submit"
                   value="Search"
@@ -37,7 +37,7 @@
                   id="city-search-button"
                 />
               </div>
-              <div class="col-1 w-100" id="current-location">
+              <div class="col-1" id="current-location">
                 <input
                   type="submit"
                   value="📌"
@@ -50,37 +50,42 @@
               </div>
             </div>
           </form>
-          <h1 id="city-header"></h1>
-          <ul>
-            <li>Local Time: <span id="local-time"></span></li>
-            <li id="weather-description"></li>
-          </ul>
-          <div class="row">
-            <div class="col-7">
-              <div class="clearfix">
-                <img
-                  src="https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png"
-                  alt="Partly cloudy icon"
-                  class="weather-icon float-left"
-                />
-                <div class="float-left">
-                  <span class="temperature" id="temperature"></span>
-                  <span class="units">
-                    <a href="#" class="active" id="fahrenheit-link">°F</a> |
-                    <a href="#" id="celsius-link">°C</a></span
-                  >
+          <div class="upper-section mx-auto">
+            <h1 id="city-header"></h1>
+            <ul>
+              <li>Local Time: <span id="local-time"></span></li>
+              <li id="weather-description"></li>
+            </ul>
+            <div class="row">
+              <div class="col-7">
+                <div class="clearfix">
+                  <img
+                    src="https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png"
+                    alt="Partly cloudy icon"
+                    class="weather-icon float-left"
+                  />
+                  <div class="float-left">
+                    <span class="temperature" id="temperature"></span>
+                    <span class="units">
+                      <a href="#" class="active" id="fahrenheit-link">°F</a> |
+                      <a href="#" id="celsius-link">°C</a></span
+                    >
+                  </div>
                 </div>
               </div>
+              <div class="col-5">
+                <ul>
+                  <li>Humidity: <span id="humidity"> </span>%</li>
+                  <li>
+                    Wind: <span id="wind"></span>
+                    <span id="wind-units">mi/hr</span>
+                  </li>
+                </ul>
+              </div>
             </div>
-            <div class="col-5">
-              <ul>
-                <li>Humidity: <span id="humidity"> </span>%</li>
-                <li>
-                  Wind: <span id="wind"></span>
-                  <span id="wind-units">mi/hr</span>
-                </li>
-              </ul>
-            </div>
+          </div>
+          <div class="hourly-forecast">
+            <div class="row weather-forecast" id="forecast"></div>
           </div>
         </div>
         <footer id="footer">

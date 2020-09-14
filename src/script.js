@@ -1,3 +1,16 @@
+function formatHours(timestamp) {
+  let date = new Date(timestamp);
+  let hours = date.getHours();
+  if (hours < 10) {
+    hours = `0${hours}`;
+  }
+  let minutes = date.getMinutes();
+  if (minutes < 10) {
+    minutes = `0${minutes}`;
+  }
+
+  return `${hours}:${minutes}`;
+}
 function formatTime(date) {
   let days = [
     "Sunday",
@@ -83,10 +96,36 @@ function convertToFahrenheit() {
   windSpeedElement.innerHTML = Math.round(windSpeedImperial);
 }
 
-function searchCity(city) {
-  let apiUrl = `${root}q=${city}&appid=${apiKey}&units=${units}`;
+function displayHourlyForecast(response) {
+  let forecastElement = document.querySelector("#forecast");
+  forecastElement.innerHTML = null;
+  let forecast = null;
 
+  for (let index = 0; index < 6; index++) {
+    forecast = response.data.list[index];
+    forecastElement.innerHTML += `
+    <div class="col-2 day-summary">
+      <div class="header">
+        ${formatHours(forecast.dt * 1000)}
+      </div>
+        <img src="https://ssl.gstatic.com/onebox/weather/48/partly_cloudy.png" alt="Partly cloudy icon"/>
+      <div class="footer">
+        <span class="daily-high">
+          ${Math.round(forecast.main.temp_max)}°
+        </span><span class="daily-low">
+        ${Math.round(forecast.main.temp_min)}°
+      </span>
+    </div>
+  `;
+  }
+}
+
+function searchCity(city) {
+  let apiUrl = `${root}weather?q=${city}&appid=${apiKey}&units=${units}`;
   axios.get(apiUrl).then(displayCityOverview);
+
+  apiUrl = `${root}forecast?q=${city}&appid=${apiKey}&units=${units}`;
+  axios.get(apiUrl).then(displayHourlyForecast);
 }
 
 function handleCitySearch() {
@@ -101,7 +140,7 @@ function getCurrentLocation(position) {
   let latitude = position.coords.latitude;
   let longitude = position.coords.longitude;
 
-  let apiUrl = `${root}lat=${latitude}&lon=${longitude}&units=${units}&appid=${apiKey}`;
+  let apiUrl = `${root}weather?lat=${latitude}&lon=${longitude}&units=${units}&appid=${apiKey}`;
 
   axios.get(apiUrl).then(displayCityOverview);
 }
@@ -115,7 +154,7 @@ let fahrenheitTemperature = null;
 let windSpeedImperial = null;
 
 let apiKey = "4fb8f394cc5f2d439df6249cf258d6a4";
-let root = "https://api.openweathermap.org/data/2.5/weather?";
+let root = "https://api.openweathermap.org/data/2.5/";
 let units = "imperial";
 
 let celsiusLink = document.querySelector("#celsius-link");

@@ -74,8 +74,71 @@ footer {
   color: #abacad;
   border-color: #abacad;
 }
+.upper-section {
+  display: block;
+  width: 490px;
+  padding-bottom: 10px;
+}
+
+.hourly-forecast {
+  padding-top: 15px 3px;
+  white-space: nowrap;
+  width: 480px;
+  margin: 0 auto;
+}
+
+.day-summary,
+.header,
+.footer {
+  font-size: 13px;
+  font-weight: 400;
+  white-space: nowrap;
+  text-align: center;
+  line-height: 14px;
+  margin: 0;
+}
+
+.day-summary {
+  border-radius: 4px;
+  display: inline-block;
+  height: 90px;
+  /* width: 62px; */
+}
+
+.day-summary .header {
+  color: rgb(186, 186, 186);
+  display: block;
+  padding-top: 7px;
+}
+
+.day-summary .footer {
+  color: rgb(34, 34, 34);
+  display: block;
+  font-weight: 400;
+  height: 14px;
+}
+
+.day-summary .daily-high,
+.day-summary .daily-low {
+  font-weight: 400;
+  height: 14px;
+  line-height: 15px;
+  font-size: 12px;
+  display: inline-block;
+  white-space: nowrap;
+}
+
+.day-summary .daily-high {
+  color: rgb(135, 135, 135);
+  padding-right: 2px;
+}
+
+.day-summary .daily-low {
+  color: rgb(186, 186, 186);
+}
+
 #input-field {
-  padding-right: 5px;
+  padding: 0 5px 0 5px;
 }
 
 #search-button {
