@@ -70,6 +70,22 @@ footer {
   cursor: default;
 }
 
+.btn-outline-secondary {
+  color: #abacad;
+  border-color: #abacad;
+}
+#input-field {
+  padding-right: 5px;
+}
+
+#search-button {
+  padding: 0 10px;
+}
+
+#current-location {
+  padding: 0px;
+}
+
 #weather-description {
   text-transform: capitalize;
 }

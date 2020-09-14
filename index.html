@@ -17,6 +17,39 @@
     <div class="container">
       <div class="weather-app-wrapper">
         <div class="weather-app">
+          <form id="search">
+            <div class="row">
+              <div class="col-8 w-100" id="input-field">
+                <input
+                  type="search"
+                  class="form-control"
+                  placeholder="Type a city..."
+                  autofocus="on"
+                  autocomplete="off"
+                  id="city-input"
+                />
+              </div>
+              <div class="col-3 w-100" id="search-button">
+                <input
+                  type="submit"
+                  value="Search"
+                  class="form-control btn btn-primary"
+                  id="city-search-button"
+                />
+              </div>
+              <div class="col-1 w-100" id="current-location">
+                <input
+                  type="submit"
+                  value="📌"
+                  class="form-control btn btn-outline-secondary"
+                  id="current-location-button"
+                  data-toggle="tooltip"
+                  data-placement="bottom"
+                  title="Search by current location"
+                />
+              </div>
+            </div>
+          </form>
           <h1 id="city-header"></h1>
           <ul>
             <li>Local Time: <span id="local-time"></span></li>

@@ -32,7 +32,7 @@ function getLocalTime(offset) {
   formatTime(localTime);
 }
 
-function searchCity(response) {
+function displayCityOverview(response) {
   let cityElement = document.querySelector("#city-header");
   cityElement.innerHTML = response.data.name;
 
@@ -70,18 +70,34 @@ function convertToFahrenheit() {
   temperature.innerHTML = Math.round(fahrenheitTemperature);
 }
 
+function searchCity(city) {
+  let apiKey = "4fb8f394cc5f2d439df6249cf258d6a4";
+  let root = "https://api.openweathermap.org/data/2.5/weather?";
+  let units = "imperial";
+  let apiUrl = `${root}q=${city}&appid=${apiKey}&units=${units}`;
+
+  axios.get(apiUrl).then(displayCityOverview);
+}
+
+function handleCitySearch() {
+  event.preventDefault();
+  let cityInput = document.querySelector("#city-input");
+  let city = cityInput.value;
+  console.log(city);
+  city = city.trim().toLowerCase();
+  console.log(city);
+  searchCity(city);
+}
+
 let fahrenheitTemperature = null;
-
-let apiKey = "4fb8f394cc5f2d439df6249cf258d6a4";
-let root = "https://api.openweathermap.org/data/2.5/weather?";
-let city = "Paris";
-let units = "imperial";
-let apiUrl = `${root}q=${city}&appid=${apiKey}&units=${units}`;
-
-axios.get(apiUrl).then(searchCity);
 
 let celsiusLink = document.querySelector("#celsius-link");
 celsiusLink.addEventListener("click", convertToCelsius);
 
 let fahrenheitLink = document.querySelector("#fahrenheit-link");
 fahrenheitLink.addEventListener("click", convertToFahrenheit);
+
+let citySearchElement = document.querySelector("#city-search-button");
+citySearchElement.addEventListener("click", handleCitySearch);
+
+searchCity("New York");
