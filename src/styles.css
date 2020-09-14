@@ -81,13 +81,23 @@ footer {
 }
 
 .hourly-forecast {
-  padding-top: 15px 3px;
+  padding: 15px;
   white-space: nowrap;
   width: 480px;
   margin: 0 auto;
 }
 
-.day-summary,
+.weekly-forecast {
+  display: block;
+  width: 490px;
+  border: 1px solid rgb(186, 186, 186);
+  border-radius: 10px;
+  padding: 3px;
+}
+
+
+.hourly-summary,
+.daily-summary,
 .header,
 .footer {
   font-size: 13px;
@@ -95,45 +105,56 @@ footer {
   white-space: nowrap;
   text-align: center;
   line-height: 14px;
+  display: block;
   margin: 0;
 }
 
-.day-summary {
+.hourly-summary {
   border-radius: 4px;
   display: inline-block;
   height: 90px;
-  /* width: 62px; */
 }
 
-.day-summary .header {
+.daily-summary {
+  border-radius: 4px;
+  display: inline-block;
+  height: 80px;
+  width: 65px;
+  margin: 2px; 
+
+}
+
+.hourly-summary .header,
+.daily-summary .header {
   color: rgb(186, 186, 186);
-  display: block;
   padding-top: 7px;
 }
 
-.day-summary .footer {
+.hourly-summary .footer,
+.daily-summary .footer {
   color: rgb(34, 34, 34);
-  display: block;
-  font-weight: 400;
   height: 14px;
 }
 
-.day-summary .daily-high,
-.day-summary .daily-low {
+.hourly-summary .daily-high,
+.hourly-summary .daily-low,
+.daily-summary .daily-high,
+.daily-summary .daily-low,
+ {
   font-weight: 400;
   height: 14px;
   line-height: 15px;
   font-size: 12px;
   display: inline-block;
-  white-space: nowrap;
+  white-space: nowrap; */
 }
 
-.day-summary .daily-high {
+.hourly-summary .daily-high {
   color: rgb(135, 135, 135);
   padding-right: 2px;
 }
 
-.day-summary .daily-low {
+.hourly-summary .daily-low {
   color: rgb(186, 186, 186);
 }
 

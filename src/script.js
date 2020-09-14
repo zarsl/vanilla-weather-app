@@ -37,14 +37,12 @@ function formatTime(date) {
   let localTimeElement = document.querySelector("#local-time");
   localTimeElement.innerHTML = formattedTime;
 }
-
 function getLocalTime(offset) {
   let date = new Date();
   let utc = date.getTime() + date.getTimezoneOffset() * 60000;
   let localTime = new Date(utc + offset * 1000); //offset in seconds from api, convert to miliseconds
   formatTime(localTime);
 }
-
 function displayCityOverview(response) {
   let cityElement = document.querySelector("#city-header");
   cityElement.innerHTML = response.data.name;
@@ -64,7 +62,6 @@ function displayCityOverview(response) {
   descriptionElement.innerHTML = response.data.weather[0].description;
   getLocalTime(response.data.timezone);
 }
-
 function convertToCelsius() {
   let temperatureElement = document.querySelector("#temperature");
   let celsiusLink = document.querySelector("#celsius-link");
@@ -80,7 +77,6 @@ function convertToCelsius() {
   let windSpeedElement = document.querySelector("#wind");
   windSpeedElement.innerHTML = Math.round(0.44704 * windSpeedImperial);
 }
-
 function convertToFahrenheit() {
   let temperatureElement = document.querySelector("#temperature");
   let celsiusLink = document.querySelector("#celsius-link");
@@ -95,7 +91,6 @@ function convertToFahrenheit() {
   let windSpeedElement = document.querySelector("#wind");
   windSpeedElement.innerHTML = Math.round(windSpeedImperial);
 }
-
 function displayHourlyForecast(response) {
   let forecastElement = document.querySelector("#forecast");
   forecastElement.innerHTML = null;
@@ -104,7 +99,7 @@ function displayHourlyForecast(response) {
   for (let index = 0; index < 6; index++) {
     forecast = response.data.list[index];
     forecastElement.innerHTML += `
-    <div class="col-2 day-summary">
+    <div class="col-2 hourly-summary">
       <div class="header">
         ${formatHours(forecast.dt * 1000)}
       </div>
@@ -119,15 +114,45 @@ function displayHourlyForecast(response) {
   `;
   }
 }
+function formatWeeklyDate(date) {
+  let dateArray = date.split("-");
+  let month = dateArray[1];
+  let monthDate = dateArray[2];
+  return `${month}/${monthDate}`;
+}
+function displayWeeklyForecast(response) {
+  let forecastWeeklyElement = document.querySelector("#forecast-weekly");
+  forecastWeeklyElement.innerHTML = null;
+  let forecastWeekly = null;
 
+  for (let index = 0; index < 7; index++) {
+    forecastWeekly = response.data.data[index];
+    forecastWeeklyElement.innerHTML += `
+    <div class="daily-summary">
+      <div class="header">
+        ${formatWeeklyDate(forecastWeekly.datetime)}
+      </div>
+        <img src="https://ssl.gstatic.com/onebox/weather/48/partly_cloudy.png" alt="Partly cloudy icon"/>
+      <div class="footer">
+        <span class="daily-high">
+          ${Math.round(forecastWeekly.app_max_temp)}°
+        </span><span class="daily-low">
+        ${Math.round(forecastWeekly.app_min_temp)}°
+      </span>
+    </div>
+  `;
+  }
+}
 function searchCity(city) {
   let apiUrl = `${root}weather?q=${city}&appid=${apiKey}&units=${units}`;
   axios.get(apiUrl).then(displayCityOverview);
 
   apiUrl = `${root}forecast?q=${city}&appid=${apiKey}&units=${units}`;
   axios.get(apiUrl).then(displayHourlyForecast);
-}
 
+  apiUrl = `https://api.weatherbit.io/v2.0/forecast/daily?city=${city}&key=${apiKeyWeeklyForecast}&units=${unitsWeekly}`;
+  axios.get(apiUrl).then(displayWeeklyForecast);
+}
 function handleCitySearch() {
   event.preventDefault();
   let cityInput = document.querySelector("#city-input");
@@ -135,7 +160,6 @@ function handleCitySearch() {
   city = city.trim().toLowerCase();
   searchCity(city);
 }
-
 function getCurrentLocation(position) {
   let latitude = position.coords.latitude;
   let longitude = position.coords.longitude;
@@ -144,7 +168,6 @@ function getCurrentLocation(position) {
 
   axios.get(apiUrl).then(displayCityOverview);
 }
-
 function handleCurrentLocationSearch() {
   event.preventDefault();
   navigator.geolocation.getCurrentPosition(getCurrentLocation);
@@ -154,8 +177,10 @@ let fahrenheitTemperature = null;
 let windSpeedImperial = null;
 
 let apiKey = "4fb8f394cc5f2d439df6249cf258d6a4";
+let apiKeyWeeklyForecast = "e7fcc27adc98427b8d2d01e1ce75ad7e";
 let root = "https://api.openweathermap.org/data/2.5/";
 let units = "imperial";
+let unitsWeekly = "i";
 
 let celsiusLink = document.querySelector("#celsius-link");
 celsiusLink.addEventListener("click", convertToCelsius);
