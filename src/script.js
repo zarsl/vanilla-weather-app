@@ -167,6 +167,7 @@ function getCurrentLocation(position) {
   let apiUrl = `${root}weather?lat=${latitude}&lon=${longitude}&units=${units}&appid=${apiKey}`;
 
   axios.get(apiUrl).then(displayCityOverview);
+  //need to handle this for hourly and weekly as well
 }
 function handleCurrentLocationSearch() {
   event.preventDefault();

@@ -23,6 +23,18 @@ li {
   line-height: 19px;
 }
 
+p {
+  color: #7c7c7c;
+  text-align: center;
+  display: block;
+  margin: 0 auto;
+  font-size: 14px;
+  width: 115px;
+  position: relative;
+  bottom: -10px;
+  background: white;
+}
+
 footer {
   font-size: 14px;
   padding-top: 5px;
@@ -76,23 +88,24 @@ footer {
 }
 .upper-section {
   display: block;
-  width: 490px;
+  width: 400px;
   padding-bottom: 10px;
 }
 
 .hourly-forecast {
-  padding: 15px;
-  white-space: nowrap;
-  width: 480px;
-  margin: 0 auto;
+    white-space: nowrap;
+    width: 430px;
+    margin: 0 auto;
+    padding: 5px 15px 5px 15px;
 }
 
 .weekly-forecast {
   display: block;
-  width: 490px;
+  width: 408px;
   border: 1px solid rgb(186, 186, 186);
   border-radius: 10px;
-  padding: 3px;
+  padding: 10px 5px 20px 15px;
+  color: white;
 }
 
 
@@ -113,61 +126,57 @@ footer {
   border-radius: 4px;
   display: inline-block;
   height: 90px;
+  width: 90px;
 }
 
 .daily-summary {
   border-radius: 4px;
   display: inline-block;
   height: 80px;
-  width: 65px;
-  margin: 2px; 
+  width: 50px;
+  margin: 4px; 
+  line-height: 10px;
 
 }
 
-.hourly-summary .header,
-.daily-summary .header {
+.header {
   color: rgb(186, 186, 186);
   padding-top: 7px;
 }
 
-.hourly-summary .footer,
-.daily-summary .footer {
-  color: rgb(34, 34, 34);
-  height: 14px;
-}
-
-.hourly-summary .daily-high,
-.hourly-summary .daily-low,
-.daily-summary .daily-high,
-.daily-summary .daily-low,
+.daily-high,
+.daily-low,
  {
-  font-weight: 400;
-  height: 14px;
   line-height: 15px;
   font-size: 12px;
   display: inline-block;
   white-space: nowrap; */
 }
 
-.hourly-summary .daily-high {
+.hourly-summary .daily-high,
+.daily-summary .daily-high {
   color: rgb(135, 135, 135);
   padding-right: 2px;
 }
 
-.hourly-summary .daily-low {
+.hourly-summary .daily-low,
+.daily-summary .daily-low {
   color: rgb(186, 186, 186);
 }
 
 #input-field {
-  padding: 0 5px 0 5px;
+  padding: 0 10px 0 60px;
+  width: 300px;
 }
 
 #search-button {
-  padding: 0 10px;
+  padding: 0 20px;
+  left: -20px
 }
 
 #current-location {
   padding: 0px;
+  left: -30px;
 }
 
 #weather-description {
