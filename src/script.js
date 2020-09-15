@@ -68,26 +68,6 @@ function getTime(offset) {
   let lastUpdateElement = document.querySelector("#last-update");
   lastUpdateElement.innerHTML = formattedLastUpdate;
 }
-function displayCityOverview(response) {
-  let cityElement = document.querySelector("#city-header");
-  cityElement.innerHTML = response.data.name;
-
-  let temperatureElement = document.querySelector("#temperature");
-  fahrenheitTemperature = response.data.main.temp;
-  temperatureElement.innerHTML = Math.round(fahrenheitTemperature);
-
-  let humidityElement = document.querySelector("#humidity");
-  humidityElement.innerHTML = Math.round(response.data.main.humidity);
-
-  let windElement = document.querySelector("#wind");
-  windElement.innerHTML = Math.round(response.data.wind.speed);
-  windSpeedImperial = response.data.wind.speed;
-
-  let descriptionElement = document.querySelector("#weather-description");
-  descriptionElement.innerHTML = response.data.weather[0].description;
-  offsetTimezone = response.data.timezone;
-  getTime(response.data.timezone);
-}
 function convertToCelsius() {
   let temperatureElement = document.querySelector("#temperature");
   let celsiusLink = document.querySelector("#celsius-link");
@@ -238,6 +218,26 @@ function handleCitySearch() {
   let city = cityInput.value;
   city = city.trim().toLowerCase();
   searchCity(city);
+}
+function displayCityOverview(response) {
+  let cityElement = document.querySelector("#city-header");
+  cityElement.innerHTML = response.data.name;
+
+  let temperatureElement = document.querySelector("#temperature");
+  fahrenheitTemperature = response.data.main.temp;
+  temperatureElement.innerHTML = Math.round(fahrenheitTemperature);
+
+  let humidityElement = document.querySelector("#humidity");
+  humidityElement.innerHTML = Math.round(response.data.main.humidity);
+
+  let windElement = document.querySelector("#wind");
+  windElement.innerHTML = Math.round(response.data.wind.speed);
+  windSpeedImperial = response.data.wind.speed;
+
+  let descriptionElement = document.querySelector("#weather-description");
+  descriptionElement.innerHTML = response.data.weather[0].description;
+  offsetTimezone = response.data.timezone;
+  getTime(response.data.timezone);
 }
 function getCurrentLocation(position) {
   let latitude = position.coords.latitude;
