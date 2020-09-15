@@ -163,7 +163,9 @@ function displayHourlyForecast(response) {
       <div class="header"><span id="hour-${index}">
         ${formatHours(forecast.dt * 1000)}</span>
       </div>
-        <img src="https://ssl.gstatic.com/onebox/weather/48/partly_cloudy.png" alt="Partly cloudy icon"/>
+        <img src= "img/${forecast.weather[0].icon}.png" alt="${
+      forecast.weather[0].description
+    }"/>
       <div class="footer">
         <span class="daily-high"><span id="forecast-hourly-max-${index}">
           ${Math.round(forecast.main.temp_max)}</span>°
@@ -189,8 +191,10 @@ function displayWeeklyForecast(response) {
       <div class="header">
         ${formatWeeklyDate(forecastWeekly.datetime)}
       </div>
-        <img src="https://ssl.gstatic.com/onebox/weather/48/partly_cloudy.png" alt="Partly cloudy icon"/>
-      <div class="footer">
+        <img src="https://www.weatherbit.io/static/img/icons/${
+          forecastWeekly.weather.icon
+        }.png" alt=""/>
+        <div class="footer">
         <span class="daily-high"><span id="forecast-daily-max-${index}">
           ${Math.round(forecastWeekly.app_max_temp)}</span>°
         </span><span class="daily-low"><span id="forecast-daily-min-${index}">
@@ -222,6 +226,16 @@ function handleCitySearch() {
 function displayCityOverview(response) {
   let cityElement = document.querySelector("#city-header");
   cityElement.innerHTML = response.data.name;
+  console.log(response);
+
+  let weatherIconElement = document.querySelector("#main-icon");
+  weatherIconElement.innerHTML = `
+      <img
+          class="weather-icon float-left"
+          src="img/${response.data.weather[0].icon}.png"
+          alt="${response.data.weather[0].description}"
+      />`;
+  console.log(`(src = "img/${response.data.weather[0].icon}.png")`);
 
   let temperatureElement = document.querySelector("#temperature");
   fahrenheitTemperature = response.data.main.temp;
