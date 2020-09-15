@@ -1,12 +1,6 @@
 body {
   font-family: Roboto, arial, sans-serif;
 }
-
-img {
-  width: 50px;
-  height: 50px;
-}
-
 h1 {
   color: #7c7c7c;
   font-size: 24px;
@@ -14,12 +8,10 @@ h1 {
   line-height: 28px;
   margin-top: 25px;
 }
-
 ul {
   margin: 0 0 18px;
   padding: 0;
 }
-
 li {
   list-style: none;
   color: #7c7c7c;
@@ -27,7 +19,6 @@ li {
   font-weight: 100;
   line-height: 19px;
 }
-
 p {
   color: #7c7c7c;
   text-align: center;
@@ -38,55 +29,52 @@ p {
   position: relative;
   bottom: -10px;
   background: white;
+  border-radius: 10px;
 }
-
 footer {
   font-size: 14px;
   padding-top: 5px;
 }
+img {
+  width: 50px;
+  height: 50px;
+}
 .weather-app-wrapper {
-  min-width: 500px;
-  max-width: 600px;
+  width: 500px;
+  height: 543px;
   margin: 20px auto 10px;
   padding: 10px;
 }
-
 .weather-app {
-  border: 1px solid #dadde1;
   border-radius: 10px;
   margin: 0px auto;
   padding: 20px;
+  border: 1px solid #9b9a9a;
 }
-
 .weather-icon {
   height: 64px;
   width: 64px;
   margin-right: 10px;
 }
-
 .temperature {
   color: rgb(33, 33, 33);
   font-size: 64px;
   font-weight: 400;
   line-height: 1;
 }
-
 .units {
   position: relative;
   top: -34px;
   font-size: 18px;
 }
-
 .active {
   color: black;
 }
-
 .active:hover {
   color: black;
   text-decoration: none;
   cursor: default;
 }
-
 .btn-outline-secondary {
   color: #abacad;
   border-color: #abacad;
@@ -96,23 +84,22 @@ footer {
   width: 400px;
   padding-bottom: 10px;
 }
-
 .hourly-forecast {
   white-space: nowrap;
   width: 430px;
   margin: 0 auto;
   padding: 5px 15px 5px 15px;
+  background-color: white;
+  border-radius: 10px;
 }
-
 .weekly-forecast {
   display: block;
   width: 408px;
   border: 1px solid rgb(186, 186, 186);
   border-radius: 10px;
   padding: 10px 5px 20px 15px;
-  color: white;
+  background-color: white;
 }
-
 .hourly-summary,
 .daily-summary,
 .header,
@@ -125,15 +112,12 @@ footer {
   display: block;
   margin: 0;
 }
-
 .hourly-summary {
   border-radius: 4px;
   display: inline-block;
   height: 90px;
   width: 90px;
-  background-color: white;
 }
-
 .daily-summary {
   border-radius: 4px;
   display: inline-block;
@@ -142,12 +126,10 @@ footer {
   margin: 4px;
   line-height: 10px;
 }
-
 .header {
   color: rgb(186, 186, 186);
   padding-top: 7px;
 }
-
 .daily-high,
 .daily-low {
   line-height: 15px;
@@ -155,51 +137,41 @@ footer {
   display: inline-block;
   white-space: nowrap;
 }
-
 .hourly-summary .daily-high,
 .daily-summary .daily-high {
   color: rgb(135, 135, 135);
   padding-right: 2px;
 }
-
 .hourly-summary .daily-low,
 .daily-summary .daily-low {
   color: rgb(186, 186, 186);
 }
-
 .hour-toggle,
 .last-update {
   font-size: 12px;
   color: rgb(186, 186, 186);
 }
-
 .last-update {
   left: 30px;
 }
-
 #input-field {
   padding: 0 10px 0 60px;
   width: 300px;
 }
-
 #search-button {
   padding: 0 20px;
   left: -20px;
 }
-
 #current-location {
   padding: 0px;
   left: -30px;
 }
-
 #weather-description {
   text-transform: capitalize;
 }
-
 #local-time {
   font-size: 14px;
 }
-
 #footer {
   width: 400px;
   display: block;

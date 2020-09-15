@@ -191,7 +191,7 @@ function displayWeeklyForecast(response) {
       <div class="header">
         ${formatWeeklyDate(forecastWeekly.datetime)}
       </div>
-        <img src="https://www.weatherbit.io/static/img/icons/${
+        <img class ="hourly-icon" src="https://www.weatherbit.io/static/img/icons/${
           forecastWeekly.weather.icon
         }.png" alt=""/>
         <div class="footer">
@@ -265,7 +265,6 @@ function handleCurrentLocationSearch() {
   event.preventDefault();
   navigator.geolocation.getCurrentPosition(getCurrentLocation);
 }
-
 function handleTwelveHourConversion(response) {
   let twelveHourElement = document.querySelector("#twelve-hr");
   let twentyFourHourElement = document.querySelector("#twenty-four-hr");
@@ -283,7 +282,6 @@ function handleTwelveHourConversion(response) {
   let lastUpdateElement = document.querySelector("#last-update");
   lastUpdateElement.innerHTML = twelveHourLastUpdateTime;
 }
-
 function handleTwentyFourHourConversion(response) {
   let twelveHourElement = document.querySelector("#twelve-hr");
   let twentyFourHourElement = document.querySelector("#twenty-four-hr");
