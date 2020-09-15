@@ -75,7 +75,7 @@ function convertToCelsius() {
   celsiusLink.classList.add("active");
   fahrenheitLink.classList.remove("active");
   let celsiusTemperature = ((fahrenheitTemperature - 32) * 5) / 9;
-  temperature.innerHTML = Math.round(celsiusTemperature);
+  temperatureElement.innerHTML = Math.round(celsiusTemperature);
 
   let windUnitsElement = document.querySelector("#wind-units");
   windUnitsElement.innerHTML = "m/s";
@@ -89,7 +89,7 @@ function convertToFahrenheit() {
   let fahrenheitLink = document.querySelector("#fahrenheit-link");
   celsiusLink.classList.remove("active");
   fahrenheitLink.classList.add("active");
-  temperature.innerHTML = Math.round(fahrenheitTemperature);
+  temperatureElement.innerHTML = Math.round(fahrenheitTemperature);
 
   let windUnitsElement = document.querySelector("#wind-units");
   windUnitsElement.innerHTML = "mi/hr";
