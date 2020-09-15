@@ -87,10 +87,6 @@ function displayCityOverview(response) {
   descriptionElement.innerHTML = response.data.weather[0].description;
   offsetTimezone = response.data.timezone;
   getTime(response.data.timezone);
-
-  handleTwelveHourConversion();
-
-  convertToFahrenheit();
 }
 function convertToCelsius() {
   let temperatureElement = document.querySelector("#temperature");
@@ -286,7 +282,7 @@ function handleTwentyFourHourConversion(response) {
 
     if (hours < 12 && forecastHour[index].split(" ")[1] === "PM") {
       hours = parseInt(hours) + 12;
-    } else {
+    } else if (hours < 10) {
       hours = `0${hours}`;
     }
 
@@ -300,7 +296,7 @@ function handleTwentyFourHourConversion(response) {
   let hours = twelveHourLocalTime.split(" ")[1].split(":")[0];
   if (hours < 12 && twelveHourLocalTime.split(" ")[2] === "PM") {
     hours = parseInt(hours) + 12;
-  } else {
+  } else if (hours < 10) {
     hours = `0${hours}`;
   }
 
@@ -315,7 +311,7 @@ function handleTwentyFourHourConversion(response) {
   hours = twelveHourLastUpdateTime.split(" ")[1].split(":")[0];
   if (hours < 12 && twelveHourLastUpdateTime.split(" ")[2] === "PM") {
     hours = parseInt(hours) + 12;
-  } else {
+  } else if (hours < 10) {
     hours = `0${hours}`;
   }
 
