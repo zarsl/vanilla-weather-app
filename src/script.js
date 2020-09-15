@@ -34,14 +34,20 @@ function formatTime(date) {
   }
   let formattedTime = `${day} ${hours}:${minutes}`;
 
-  let localTimeElement = document.querySelector("#local-time");
-  localTimeElement.innerHTML = formattedTime;
+  return formattedTime;
 }
-function getLocalTime(offset) {
+function getTime(offset) {
   let date = new Date();
   let utc = date.getTime() + date.getTimezoneOffset() * 60000;
   let localTime = new Date(utc + offset * 1000); //offset in seconds from api, convert to miliseconds
-  formatTime(localTime);
+  let formattedLocalTime = formatTime(localTime);
+  let formattedLastUpdate = formatTime(date);
+
+  let localTimeElement = document.querySelector("#local-time");
+  localTimeElement.innerHTML = formattedLocalTime;
+
+  let lastUpdateElement = document.querySelector("#last-update");
+  lastUpdateElement.innerHTML = formattedLastUpdate;
 }
 function displayCityOverview(response) {
   let cityElement = document.querySelector("#city-header");
@@ -60,7 +66,7 @@ function displayCityOverview(response) {
 
   let descriptionElement = document.querySelector("#weather-description");
   descriptionElement.innerHTML = response.data.weather[0].description;
-  getLocalTime(response.data.timezone);
+  getTime(response.data.timezone);
 }
 function convertToCelsius() {
   let temperatureElement = document.querySelector("#temperature");

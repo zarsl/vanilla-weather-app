@@ -164,6 +164,14 @@ footer {
   color: rgb(186, 186, 186);
 }
 
+.last-update {
+  font-size: 12px;
+  text-align: right;
+  padding: 15px 20px 0px 0px;
+  color: rgb(186, 186, 186)
+  
+}
+
 #input-field {
   padding: 0 10px 0 60px;
   width: 300px;
