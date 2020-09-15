@@ -93,10 +93,10 @@ footer {
 }
 
 .hourly-forecast {
-    white-space: nowrap;
-    width: 430px;
-    margin: 0 auto;
-    padding: 5px 15px 5px 15px;
+  white-space: nowrap;
+  width: 430px;
+  margin: 0 auto;
+  padding: 5px 15px 5px 15px;
 }
 
 .weekly-forecast {
@@ -107,7 +107,6 @@ footer {
   padding: 10px 5px 20px 15px;
   color: white;
 }
-
 
 .hourly-summary,
 .daily-summary,
@@ -134,9 +133,8 @@ footer {
   display: inline-block;
   height: 80px;
   width: 50px;
-  margin: 4px; 
+  margin: 4px;
   line-height: 10px;
-
 }
 
 .header {
@@ -145,12 +143,11 @@ footer {
 }
 
 .daily-high,
-.daily-low,
- {
+.daily-low {
   line-height: 15px;
   font-size: 12px;
   display: inline-block;
-  white-space: nowrap; */
+  white-space: nowrap;
 }
 
 .hourly-summary .daily-high,
@@ -168,8 +165,7 @@ footer {
   font-size: 12px;
   text-align: right;
   padding: 15px 20px 0px 0px;
-  color: rgb(186, 186, 186)
-  
+  color: rgb(186, 186, 186);
 }
 
 #input-field {
@@ -179,7 +175,7 @@ footer {
 
 #search-button {
   padding: 0 20px;
-  left: -20px
+  left: -20px;
 }
 
 #current-location {

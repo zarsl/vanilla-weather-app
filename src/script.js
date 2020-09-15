@@ -77,12 +77,43 @@ function convertToCelsius() {
   let celsiusTemperature = ((fahrenheitTemperature - 32) * 5) / 9;
   temperatureElement.innerHTML = Math.round(celsiusTemperature);
 
+  for (let index = 0; index < 6; index++) {
+    let hourlyMaxElement = document.querySelector(
+      `#forecast-hourly-max-${index}`
+    );
+    hourlyMaxElement.innerHTML = Math.round(
+      ((forecastHourlyMax[index] - 32) * 5) / 9
+    );
+    let hourlyMinElement = document.querySelector(
+      `#forecast-hourly-min-${index}`
+    );
+    hourlyMinElement.innerHTML = Math.round(
+      ((forecastHourlyMin[index] - 32) * 5) / 9
+    );
+  }
+
+  for (let index = 0; index < 7; index++) {
+    let dailyMaxElement = document.querySelector(
+      `#forecast-daily-max-${index}`
+    );
+    dailyMaxElement.innerHTML = Math.round(
+      ((forecastDailyMax[index] - 32) * 5) / 9
+    );
+    let dailyMinElement = document.querySelector(
+      `#forecast-daily-min-${index}`
+    );
+    dailyMinElement.innerHTML = Math.round(
+      ((forecastDailyMin[index] - 32) * 5) / 9
+    );
+  }
+
   let windUnitsElement = document.querySelector("#wind-units");
   windUnitsElement.innerHTML = "m/s";
 
   let windSpeedElement = document.querySelector("#wind");
   windSpeedElement.innerHTML = Math.round(0.44704 * windSpeedImperial);
 }
+
 function convertToFahrenheit() {
   let temperatureElement = document.querySelector("#temperature");
   let celsiusLink = document.querySelector("#celsius-link");
@@ -90,6 +121,30 @@ function convertToFahrenheit() {
   celsiusLink.classList.remove("active");
   fahrenheitLink.classList.add("active");
   temperatureElement.innerHTML = Math.round(fahrenheitTemperature);
+
+  for (let index = 0; index < 6; index++) {
+    let hourlyMaxElement = document.querySelector(
+      `#forecast-hourly-max-${index}`
+    );
+    hourlyMaxElement.innerHTML = Math.round(forecastHourlyMax[index]);
+
+    let hourlyMinElement = document.querySelector(
+      `#forecast-hourly-min-${index}`
+    );
+    hourlyMinElement.innerHTML = Math.round(forecastHourlyMin[index]);
+  }
+
+  for (let index = 0; index < 7; index++) {
+    let dailyMaxElement = document.querySelector(
+      `#forecast-daily-max-${index}`
+    );
+    dailyMaxElement.innerHTML = Math.round(forecastDailyMax[index]);
+
+    let dailyMinElement = document.querySelector(
+      `#forecast-daily-min-${index}`
+    );
+    dailyMinElement.innerHTML = Math.round(forecastDailyMin[index]);
+  }
 
   let windUnitsElement = document.querySelector("#wind-units");
   windUnitsElement.innerHTML = "mi/hr";
@@ -111,13 +166,15 @@ function displayHourlyForecast(response) {
       </div>
         <img src="https://ssl.gstatic.com/onebox/weather/48/partly_cloudy.png" alt="Partly cloudy icon"/>
       <div class="footer">
-        <span class="daily-high">
-          ${Math.round(forecast.main.temp_max)}°
-        </span><span class="daily-low">
-        ${Math.round(forecast.main.temp_min)}°
+        <span class="daily-high"><span id="forecast-hourly-max-${index}">
+          ${Math.round(forecast.main.temp_max)}</span>°
+        </span><span class="daily-low"> <span id="forecast-hourly-min-${index}">
+        ${Math.round(forecast.main.temp_min)}</span>°
       </span>
     </div>
   `;
+    forecastHourlyMax[index] = Math.round(forecast.main.temp_max);
+    forecastHourlyMin[index] = Math.round(forecast.main.temp_min);
   }
 }
 function formatWeeklyDate(date) {
@@ -140,14 +197,17 @@ function displayWeeklyForecast(response) {
       </div>
         <img src="https://ssl.gstatic.com/onebox/weather/48/partly_cloudy.png" alt="Partly cloudy icon"/>
       <div class="footer">
-        <span class="daily-high">
-          ${Math.round(forecastWeekly.app_max_temp)}°
-        </span><span class="daily-low">
-        ${Math.round(forecastWeekly.app_min_temp)}°
+        <span class="daily-high"><span id="forecast-daily-max-${index}">
+          ${Math.round(forecastWeekly.app_max_temp)}</span>°
+        </span><span class="daily-low"><span id="forecast-daily-min-${index}">
+        ${Math.round(forecastWeekly.app_min_temp)}</span>°
       </span>
     </div>
   `;
+    forecastDailyMax[index] = Math.round(forecastWeekly.app_max_temp);
+    forecastDailyMin[index] = Math.round(forecastWeekly.app_min_temp);
   }
+  console.log(forecastDailyMax);
 }
 function searchCity(city) {
   let apiUrl = `${root}weather?q=${city}&appid=${apiKey}&units=${units}`;
@@ -173,7 +233,6 @@ function getCurrentLocation(position) {
   let apiUrl = `${root}weather?lat=${latitude}&lon=${longitude}&units=${units}&appid=${apiKey}`;
 
   axios.get(apiUrl).then(displayCityOverview);
-  //need to handle this for hourly and weekly as well
 }
 function handleCurrentLocationSearch() {
   event.preventDefault();
@@ -182,6 +241,10 @@ function handleCurrentLocationSearch() {
 
 let fahrenheitTemperature = null;
 let windSpeedImperial = null;
+let forecastHourlyMax = [];
+let forecastHourlyMin = [];
+let forecastDailyMax = [];
+let forecastDailyMin = [];
 
 let apiKey = "4fb8f394cc5f2d439df6249cf258d6a4";
 let apiKeyWeeklyForecast = "e7fcc27adc98427b8d2d01e1ce75ad7e";
