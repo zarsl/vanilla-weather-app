@@ -161,11 +161,14 @@ footer {
   color: rgb(186, 186, 186);
 }
 
+.hour-toggle,
 .last-update {
   font-size: 12px;
-  text-align: right;
-  padding: 15px 20px 0px 0px;
   color: rgb(186, 186, 186);
+}
+
+.last-update {
+  left: 30px;
 }
 
 #input-field {
@@ -189,4 +192,11 @@ footer {
 
 #local-time {
   font-size: 14px;
+}
+
+#footer {
+  width: 400px;
+  display: block;
+  margin: 0 auto;
+  padding-top: 12px;
 }

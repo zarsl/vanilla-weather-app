@@ -91,11 +91,19 @@
           <div class="weekly-forecast mx-auto">
             <div class="row weather-forecast" id="forecast-weekly"></div>
           </div>
-          <div class="last-update">
-            <em> Last Updated: <span id="last-update">18:00</span></em>
+          <div id="footer">
+            <div class="row">
+              <div class="col-6 hour-toggle">
+                <a href="#" class="active" id="twelve-hr">12 hr</a> |
+                <a href="#" id="twenty-four-hr">24 hr</a>
+              </div>
+              <div class="col-6 last-update">
+                <em> Last Updated: <span id="last-update">18:00</span></em>
+              </div>
+            </div>
           </div>
         </div>
-        <footer id="footer">
+        <footer>
           <a href="https://github.com/zarsl/weather-app" target="_blank"
             >Open-source code</a
           >
