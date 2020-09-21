@@ -258,8 +258,13 @@ function getCurrentLocation(position) {
   let longitude = position.coords.longitude;
 
   let apiUrl = `${root}weather?lat=${latitude}&lon=${longitude}&units=${units}&appid=${apiKey}`;
-
   axios.get(apiUrl).then(displayCityOverview);
+
+  apiUrl = `${root}forecast?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=${units}`;
+  axios.get(apiUrl).then(displayHourlyForecast);
+
+  apiUrl = `https://api.weatherbit.io/v2.0/forecast/daily?lat=${latitude}&lon=${longitude}&key=${apiKeyWeeklyForecast}&units=${unitsWeekly}`;
+  axios.get(apiUrl).then(displayWeeklyForecast);
 }
 function handleCurrentLocationSearch() {
   event.preventDefault();
